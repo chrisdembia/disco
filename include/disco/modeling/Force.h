@@ -16,10 +16,11 @@ public:
     /**
      * @brief Hello.
      * */
-    Unit::Force value() const;
-
+    value::Force value() const;
 
 private:
+
+    value::Force _value;
 };
 
 } // namespace disco

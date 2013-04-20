@@ -1,6 +1,13 @@
 // Miscellaneous Doxygen documentation.
 
 /**
+ * @mainpage
+ *
+ * \image html disco.svg
+ *
+ * */
+
+/**
  * @brief Framework classes for smart pointers, etc.
  * */
 namespace fwk { }
