@@ -12,9 +12,11 @@ namespace disco
 class Force : public NamedInterface
 {
 public:
+
     /**
      * @brief Hello.
      * */
+    Unit::Force value() const;
 
 
 private:

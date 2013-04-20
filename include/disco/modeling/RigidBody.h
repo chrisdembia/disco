@@ -16,10 +16,8 @@ public:
     typedef fwk::Ptr<RigidBody const> PtrConst;
     typedef fwk::Ptr<RigidBody> Ptr;
 
-    /**
-     * @brief Hello.
-     * */
-    void testing();
+    Mass mass();
+    Inertia inertia();
 
 private:
 };
