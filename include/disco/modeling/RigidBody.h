@@ -19,6 +19,7 @@ public:
     Mass mass();
     Inertia inertia();
     Position centerOfMass();
+    Frame frame();
 
 private:
 };
