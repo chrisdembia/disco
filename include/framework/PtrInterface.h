@@ -1,12 +1,12 @@
 // Copyright (c) 1993-2007 David R. Cheriton, all rights reserved.
 // Modified by Chris Dembia.
 
-#ifndef FWK_PTRINTERFACE_H
-#define FWK_PTRINTERFACE_H
+#ifndef FRAMEWORK_PTRINTERFACE_H
+#define FRAMEWORK_PTRINTERFACE_H
 
 #include <iostream>
 
-namespace fwk {
+namespace framework {
 
 template <class T>
 class PtrInterface {

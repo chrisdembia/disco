@@ -11,13 +11,17 @@ set(DISCO_BUILD_EXAMPLES FALSE CACHE BOOL
 set(DISCO_BUILD_DOC FALSE CACHE BOOL
     "Create API documentation (requires Doxygen).")
 
-# Build googletest
+# Build googletest.
 if(DISCO_BUILD_TESTS)
+    # To use CTest.
     enable_testing()
+    # To build the googletest project.
     add_subdirectory(googletest)
+    # To build this project's tests.
+    add_subdirectory(tests)
 endif()
 
-# Doxygen API documentation
+# Doxygen API documentation.
 if(DISCO_BUILD_DOC)
     find_package(Doxygen REQUIRED)
     if(DOXYGEN_FOUND)

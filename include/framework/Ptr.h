@@ -1,10 +1,10 @@
 // Copyright (C) 1993-2002 David R. Cheriton.  All rights reserved.
 // Modified by Chris Dembia.
 
-#ifndef FWK_PTR_H
-#define FWK_PTR_H
+#ifndef FRAMEWORK_PTR_H
+#define FRAMEWORK_PTR_H
 
-namespace fwk {
+namespace framework {
 
 template <class T>
 class Ptr
@@ -70,4 +70,4 @@ Ptr<T>::operator=( T* p ) {
 
 }
 
-#endif /* FWK_PTR_H */
+#endif /* FRAMEWORK_PTR_H */
