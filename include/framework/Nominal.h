@@ -1,15 +1,15 @@
-#ifndef __NOMINAL_H__
-#define __NOMINAL_H__
+#ifndef FRAMEWORK_NOMINAL_H
+#define FRAMEWORK_NOMINAL_H
+
+#include "framework/LogImpl.h"
 
 #include <sstream>
 #include <string>
 #include <iostream>
 
-#include "LogImpl.h"
-
 using namespace std;
-using Fwk::LogImpl;
-using Fwk::Log;
+using framework::LogImpl;
+using framework::Log;
 
 template<class UnitType, class RepType>
     class Nominal
@@ -118,7 +118,7 @@ protected:
             ostringstream oss;
             oss << "Value " << value << " is not above " << min() << ".";
             LogImpl::log()->entryNew(Log::error(), "valueIs", oss.str());
-            throw Fwk::RangeException(oss.str());
+            throw framework::RangeException(oss.str());
         }
         this->value_ = value;
     }
@@ -168,7 +168,7 @@ protected:
             ostringstream oss;
             oss << "Value " << value << " is not below " << max() << ".";
             LogImpl::log()->entryNew(Log::error(), "valueIs", oss.str());
-            throw Fwk::RangeException(oss.str());
+            throw framework::RangeException(oss.str());
         }
         this->value_ = value;
     }
@@ -290,4 +290,4 @@ class Rate { };
 
 typedef LeftBounded<Rate, float, 0, 0> HoursPerSecond;
 
-#endif // __NOMINAL_H__
+#endif

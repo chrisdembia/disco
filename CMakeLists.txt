@@ -40,7 +40,7 @@ endif(DISCO_BUILD_DOC)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # The library.
-file(GLOB DISCO_SOURCES src/*.cpp)
+file(GLOB DISCO_SOURCES src/*/*.cpp)
 file(GLOB DISCO_HEADERS include/*/*/*)
 
 add_library(${LIBRARY_NAME} ${DISCO_SOURCES} ${DISCO_HEADERS})

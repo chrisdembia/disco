@@ -1,22 +1,23 @@
-/*!
- * Implementation of Fwk::Log for logging errors, etc.
- *
- * */
+// Copyright (C) 2013 Chris Dembia.
 
-#ifndef LOGIMPL_H
-#define LOGIMPL_H
+#ifndef FRAMEWORK_LOGIMPL_H
+#define FRAMEWORK_LOGIMPL_H
 
-#include "Log.h"
+#include "framework/Log.h"
 
 #include <string>
 
 using std::string;
 
-Fwk::Ptr<Fwk::Log> log();
+framework::Ptr<framework::Log> log();
 
-namespace Fwk {
+namespace framework {
 
-class LogImpl : public Fwk::Log {
+/*!
+ * Implementation of framework::Log for logging errors, etc.
+ *
+ * */
+class LogImpl : public framework::Log {
 public:
 
     void entryNew(Priority priority,
@@ -31,16 +32,17 @@ public:
     void entryNew(Priority priority,
                   const string& cond) throw();
 
-    static Fwk::Ptr<Fwk::Log> log();
+    static framework::Ptr<framework::Log> log();
 
 protected:
 
-    LogImpl() : Fwk::Log("ShippingLog") { }
+    // TODO
+    LogImpl() : framework::Log("DiscoLog") { }
 
-    static Fwk::Ptr<Fwk::Log> log_;
+    static framework::Ptr<framework::Log> _log;
 
 };
 
-}
+} // namespace framework
 
 #endif

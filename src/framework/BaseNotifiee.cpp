@@ -1,13 +1,15 @@
 // Copyright (c) 2005-2006_2007 David R. Cheriton.  All rights reserved.
 
-#include "BaseNotifiee.h"
+#include "framework/BaseNotifiee.h"
+
 #include <iostream>
 
-namespace Fwk {
+using std::string;
 
+namespace framework {
 
 class Activity;
-String RootNotifiee::name() const { return "unknown"; }
+string RootNotifiee::name() const { return "unknown"; }
 void RootNotifiee::isNonReferencingIs( bool b ) { assert( false ); }
 void RootNotifiee::handleNotification( Activity * ) {}
 void RootNotifiee::handleDefault( Activity *, AttributeId, bool ) {}
@@ -31,35 +33,34 @@ U32 RootNotifiee::auditErrors( U32 ) const { return 0; }
 
 // support for generic TacNotifieeAdapter
 void RootNotifiee::onNotification() {}
-void RootNotifiee::onCollectionNotification( String ) {}
+void RootNotifiee::onCollectionNotification( string ) {}
 
-String RootNotifiee::attributeString( RootNotifiee::AttributeId a )
+string RootNotifiee::attributeString( RootNotifiee::AttributeId a )
 {
-   Fwk::String str = "unknown";
+   string str = "unknown";
    switch (a) {
-     case nullNotification_: str = "nullNotification_"; break;
-     case multipleAttributes__: str = "multipleAttributes__"; break;
-     case initialNotification__: str = "initialNotification__"; break;
-     case this__: str = "this__"; break;
-     case notificationException__: str = "notificationException__"; break;
-     case notificationAttribute__: str = "notificationAttribute__"; break;
-     case deleteRef__: str = "deleteRef__"; break;
-     case references__: str = "references__"; break;
-     case auditErrors__: str = "auditErrors__"; break;
-     case name__: str = "name__"; break;
-     case version__: str = "version__"; break;
-     case clone__: str = "clone__"; break;
-     case entityRef__: str = "entityRef__"; break;
-     case attribute__: str = "attribute__"; break;
-     case parent__: str = "parent__"; break;
-     case syncMode__: str = "syncMode__"; break;
-     case orphan__: str = "orphan__"; break;
-     case entityId__: str = "entityId__"; break;
-     case cloneState__: str = "cloneState__"; break;
+     case _nullNotification_: str = "_nullNotification_"; break;
+     case _multipleAttributes: str = "_multipleAttributes"; break;
+     case _initialNotification: str = "_initialNotification"; break;
+     case _this: str = "_this"; break;
+     case _notificationException: str = "_notificationException"; break;
+     case _notificationAttribute: str = "_notificationAttribute"; break;
+     case _deleteRef: str = "_deleteRef"; break;
+     case _references: str = "_references"; break;
+     case _auditErrors: str = "_auditErrors"; break;
+     case _name: str = "_name"; break;
+     case _version: str = "_version"; break;
+     case _clone: str = "_clone"; break;
+     case _entityRef: str = "_entityRef"; break;
+     case _attribute: str = "_attribute"; break;
+     case _parent: str = "_parent"; break;
+     case _syncMode: str = "_syncMode"; break;
+     case _orphan: str = "_orphan"; break;
+     case _entityId: str = "_entityId"; break;
+     case _cloneState: str = "_cloneState"; break;
      default: /* nothing */;
    }
    return str;
 }
 
-
-} // namespace Fwk
+} // namespace framework

@@ -1,10 +1,8 @@
 // Copyright (c) 1993-2007 David R. Cheriton, all rights reserved.
-// Modified by Chris Dembia.
+// Modified by Chris Dembia (2013).
 
 #ifndef FRAMEWORK_PTRINTERFACE_H
 #define FRAMEWORK_PTRINTERFACE_H
-
-#include <iostream>
 
 namespace framework {
 
@@ -18,15 +16,11 @@ public:
     inline void deleteRef() const { if( --ref_ == 0 ) onZeroReferences(); }
 protected:
     virtual ~PtrInterface() {}
-    virtual void onZeroReferences() const
-    {
-        //std::cout << "Hello there" << std::endl;
-        delete this;
-    }
+    virtual void onZeroReferences() const { delete this; }
 private:
     mutable long unsigned ref_;
 };
 
-}
+} // namespace framework
 
 #endif

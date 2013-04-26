@@ -1,5 +1,5 @@
 // Copyright (C) 1993-2002 David R. Cheriton.  All rights reserved.
-// Modified by Chris Dembia.
+// Modified by Chris Dembia (2013).
 
 #ifndef FRAMEWORK_PTR_H
 #define FRAMEWORK_PTR_H
@@ -44,7 +44,7 @@ protected:
 template<class T> Ptr<T>&
 Ptr<T>::operator=( const Ptr<T>& mp ) {
     const T * save = ptr_;
-    ptr_ = mp.ptr_;
+    ptr_ = mp.ptr_; 
     if( ptr_ ) ptr_->newRef();
     if( save ) save->deleteRef();
     return *this;
@@ -53,7 +53,7 @@ Ptr<T>::operator=( const Ptr<T>& mp ) {
 template<class T> Ptr<T>&
 Ptr<T>::operator=( Ptr<T>& mp ) {
     T * save = ptr_;
-    ptr_ = mp.ptr_;
+    ptr_ = mp.ptr_; 
     if( ptr_ ) ptr_->newRef();
     if( save ) save->deleteRef();
     return *this;
@@ -68,6 +68,11 @@ Ptr<T>::operator=( T* p ) {
     return *this;
 }
 
+template <class T, class U>
+Ptr<T> ptr_cast(Ptr<U> mp) {
+    return dynamic_cast<T*>(mp.ptr());
 }
 
-#endif /* FRAMEWORK_PTR_H */
+} // namespace framework
+
+#endif

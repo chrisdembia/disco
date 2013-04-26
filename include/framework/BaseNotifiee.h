@@ -1,55 +1,58 @@
-// Basic notifiee class template
 // Copyright(c) 1993-2006, 2007, David R. Cheriton, all rights reserved.
+// Modified by Chris Dembia (2013).
 
-#ifndef FWK_BASENOTIFIEE_H
-#define FWK_BASENOTIFIEE_H
+#ifndef FRAMEWORK_BASENOTIFIEE_H
+#define FRAMEWORK_BASENOTIFIEE_H
 
-#include "PtrInterface.h"
-#include "Exception.h"
-#include "Ptr.h"
-#include "Types.h"
-#include "String.h"
+#include "framework/PtrInterface.h"
+#include "framework/Exception.h"
+#include "framework/Ptr.h"
 
-namespace Fwk {
+using std::string;
 
-class RootNotifiee : public Fwk::PtrInterface<RootNotifiee> {
+namespace framework {
+
+/**
+ * @brief Basic notifiee class template.
+ * */
+class RootNotifiee : public framework::PtrInterface<RootNotifiee> {
 public:
-   typedef Fwk::Ptr<RootNotifiee const> PtrConst;
-   typedef Fwk::Ptr<RootNotifiee> Ptr;
+   typedef framework::Ptr<RootNotifiee const> PtrConst;
+   typedef framework::Ptr<RootNotifiee> Ptr;
 
    enum AttributeId {
-     nullNotification_ = 0,
-     multipleAttributes__ = -1,
-     initialNotification__ = -2,
-     this__ = 1,
+     _nullNotification_ = 0,
+     _multipleAttributes = -1,
+     _initialNotification = -2,
+     _this = 1,
 
-     notificationException__ = 8,
-     notificationAttribute__ = 9,
-     deleteRef__ = 10,
-     references__ = 11,
-     auditErrors__ = 12,
+     _notificationException = 8,
+     _notificationAttribute = 9,
+     _deleteRef = 10,
+     _references = 11,
+     _auditErrors = 12,
      // Entity-level attributes
-     name__ = 2,
-     version__ = 3,
-     clone__ = 4,
-     entityRef__ = 5,
-     attribute__ = 6,
-     parent__ = 16,
-     syncMode__ = 17,
-     orphan__ = 20,
-     entityId__ = 22,
-     cloneState__ = 23,
+     _name = 2,
+     _version = 3,
+     _clone = 4,
+     _entityRef = 5,
+     _attribute = 6,
+     _parent = 16,
+     _syncMode = 17,
+     _orphan = 20,
+     _entityId = 22,
+     _cloneState = 23,
      // FixMe: remove - not used.
-     nextAttributeNumber__,
-     tacNextAttributeId__ = nextAttributeNumber__,
-     negativeAttr__ = 0x80000000, 
+     _nextAttributeNumber,
+     _tacNextAttributeId = nextAttributeNumber,
+     _negativeAttr = 0x80000000, 
    };
    AttributeId notificationAttribute() const { 
       return notificationAttribute_;
     }
-   static String attributeString( AttributeId );
+   static string attributeString( AttributeId );
    RootNotifiee const * lqNext()  const { return lqNext_.ptr(); }
-   virtual String name() const;
+   virtual string name() const;
    // Non-const interface =================================================
 
    RootNotifiee * fwkValue() { return this; }
@@ -88,7 +91,7 @@ public:
    virtual void handleNotificationException();
    virtual void onDelete();
    virtual void onNotification();
-   virtual void onCollectionNotification( String );
+   virtual void onCollectionNotification( string );
    virtual U32 auditErrors( U32 ) const;
 protected:
    AttributeId notificationAttribute_;
@@ -113,11 +116,11 @@ public:
         }
     }
 
-    Fwk::Ptr<Notifier> notifier() const {
+    framework::Ptr<Notifier> notifier() const {
         return notifier_;
     }
 
-    void notifierIs(Fwk::Ptr<Notifier> n) {
+    void notifierIs(framework::Ptr<Notifier> n) {
         if (notifier_ != n) {
             if (notifier_ != NULL) {
                 notifier_->notifieeIs(0);
@@ -132,11 +135,10 @@ public:
     }
 
 private:
-    Fwk::Ptr<Notifier> notifier_;
+    framework::Ptr<Notifier> notifier_;
 
 };
 
-
 }
 
-#endif /* BASENOTIFIEE_H */
+#endif

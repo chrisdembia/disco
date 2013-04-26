@@ -1,31 +1,31 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef FRAMEWORK_LOG_H
+#define FRAMEWORK_LOG_H
 
 #include <string>
 
-#include "NamedInterface.h"
+#include "framework/NamedInterface.h"
 
 using std::string;
 
-namespace Fwk {
+namespace framework {
 
 class Log : public NamedInterface {
 public:
 
     enum Priority {
-        null__,
-        critical__,
-        error__,
-        warning__,
-        status__,
-        debug__
+        _null,
+        _critical,
+        _error,
+        _warning,
+        _status,
+        _debug
     };
-    static const Priority null() { return null__; }
-    static const Priority critical() { return critical__; }
-    static const Priority error() { return error__; }
-    static const Priority warning() { return warning__; }
-    static const Priority status() { return status__; }
-    static const Priority debug() { return debug__; }
+    static const Priority null() { return _null; }
+    static const Priority critical() { return _critical; }
+    static const Priority error() { return _error; }
+    static const Priority warning() { return _warning; }
+    static const Priority status() { return _status; }
+    static const Priority debug() { return _debug; }
 
     virtual void entryNew(Priority priority,
                           NamedInterface * obj,
@@ -47,6 +47,6 @@ protected:
 
 extern Ptr<Log> log();
 
-}
+} // namespace framework
 
 #endif

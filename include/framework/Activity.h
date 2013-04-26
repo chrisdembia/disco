@@ -1,24 +1,29 @@
-#ifndef __ACTIVITY_H__
-#define __ACTIVITY_H__
+// Modified by Chris Dembia (2013).
+
+#ifndef FRAMEWORK_ACTIVITY_H
+#define FRAMEWORK_ACTIVITY_H
 
 #include <string>
 
-#include "PtrInterface.h"
-#include "Nominal.h"
-#include "BaseNotifiee.h"
+#include "framework/PtrInterface.h"
+#include "framework/Nominal.h"
+#include "framework/BaseNotifiee.h"
 
 using std::string;
 
-class Activity : public Fwk::PtrInterface<Activity> {
+namespace framework
+{
+
+class Activity : public PtrInterface<Activity> {
 public:
 
-    typedef Fwk::Ptr<Activity> Ptr;
+    typedef Ptr<Activity> Ptr;
 
     /* Notifiee class for Activities */
-    class Notifiee : public Fwk::BaseNotifiee<Activity> {
+    class Notifiee : public BaseNotifiee<Activity> {
     public:
-        typedef Fwk::Ptr<Notifiee> Ptr;
-        Notifiee(Activity * act) : Fwk::BaseNotifiee<Activity>(act) { }
+        typedef Ptr<Notifiee> Ptr;
+        Notifiee(Activity * act) : BaseNotifiee<Activity>(act) { }
         virtual void onNextExecutionTimeIs() { }
         virtual void onStatusIs() { } 
     };
@@ -26,19 +31,19 @@ public:
     class Manager;
 
     enum Status {
-        free__,
-        waiting__,
-        ready__,
-        executing__,
-        scheduled__,
-        deleted__
+        _free,
+        _waiting,
+        _ready,
+        _executing,
+        _scheduled,
+        _deleted
     };
-    static inline Status free() { return free__; }
-    static inline Status waiting() { return waiting__; }
-    static inline Status ready() { return ready__; }
-    static inline Status executing() { return executing__; }
-    static inline Status scheduled() { return scheduled__; }
-    static inline Status deleted() { return deleted__; }
+    static inline Status free() { return _free; }
+    static inline Status waiting() { return _waiting; }
+    static inline Status ready() { return _ready; }
+    static inline Status executing() { return _executing; }
+    static inline Status scheduled() { return _scheduled; }
+    static inline Status deleted() { return _deleted; }
 
     virtual Status status() const = 0;
     virtual void statusIs(Status s)  = 0;
@@ -47,7 +52,7 @@ public:
     virtual void nextExecutionTimeIs(Duration time) = 0;
     virtual void nextExecutionTimeInc(Duration time) = 0;
 
-    virtual Fwk::Ptr<Notifiee> notifiee() const = 0;
+    virtual Ptr<Notifiee> notifiee() const = 0;
 
     virtual void notifieeIs(Notifiee* n) = 0;
 
@@ -63,13 +68,13 @@ private:
 
 };
 
-class Activity::Manager : public Fwk::PtrInterface<Activity::Manager> {
+class Activity::Manager : public PtrInterface<Activity::Manager> {
 public:
 
-    typedef Fwk::Ptr<Activity::Manager> Ptr;
+    typedef Ptr<Activity::Manager> Ptr;
 
-    virtual Fwk::Ptr<Activity> activityNew(const string &name) = 0;
-    virtual Fwk::Ptr<Activity> activity(const string &name) const = 0;
+    virtual Ptr<Activity> activityNew(const string &name) = 0;
+    virtual Ptr<Activity> activity(const string &name) const = 0;
     virtual Activity::Ptr activityDel(const string &name) = 0;
 
     virtual Duration timePassed() const = 0;
@@ -83,7 +88,10 @@ public:
 private:
 
     /* Up to you */
+    // TODO
 
 };
+
+} // namespace framework
 
 #endif

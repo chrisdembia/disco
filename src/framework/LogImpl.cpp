@@ -1,22 +1,24 @@
-#include "LogImpl.h"
+// Copyright (C) 2013 Chris Dembia.
+
+#include "framework/LogImpl.h"
 
 using std::cerr;
 using std::endl;
     
-Fwk::Ptr<Fwk::Log> log() { 
-    return Fwk::LogImpl::log();
+framework::Ptr<framework::Log> log() { 
+    return framework::LogImpl::log();
 }
 
-namespace Fwk {
+namespace framework {
 
-Fwk::Ptr<Fwk::Log> LogImpl::log_ = NULL;
+framework::Ptr<framework::Log> LogImpl::_log = NULL;
 
-Fwk::Ptr<Fwk::Log> LogImpl::log() {
+framework::Ptr<framework::Log> LogImpl::log() {
 
-    if (log_ == NULL) 
-        log_ = new LogImpl();
+    if (_log == NULL) 
+        _log = new LogImpl();
 
-    return log_;
+    return _log;
 
 }
 
@@ -43,4 +45,4 @@ LogImpl::entryNew(Priority priority,
     cerr << cond << endl;        
 }
 
-}
+} // namespace framework
