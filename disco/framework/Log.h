@@ -1,18 +1,24 @@
+// Copyright(c) 1993-2006_2007, David R. Cheriton, all rights reserved.
+// Modified by Chris Dembia (2013).
+
 #ifndef FRAMEWORK_LOG_H
 #define FRAMEWORK_LOG_H
 
 #include <string>
 
-#include "framework/NamedInterface.h"
+#include "NamedInterface.h"
 
 using std::string;
 
-namespace framework {
+namespace framework
+{
 
-class Log : public NamedInterface {
+class Log : public NamedInterface
+{
 public:
 
-    enum Priority {
+    enum Priority
+    {
         _null,
         _critical,
         _error,

@@ -1,15 +1,21 @@
+// Copyright (c) 1993-2007 David R. Cheriton, all rights reserved.
+// Modified by Chris Dembia (2013).
+
 #ifndef FRAMEWORK_NOMINAL_H
 #define FRAMEWORK_NOMINAL_H
 
-#include "framework/LogImpl.h"
+#include "DiscoLog.h"
+#include "Exception.h"
 
 #include <sstream>
 #include <string>
 #include <iostream>
 
 using namespace std;
-using framework::LogImpl;
+using framework::DiscoLog;
 using framework::Log;
+
+namespace framework {
 
 template<class UnitType, class RepType>
     class Nominal
@@ -117,7 +123,7 @@ protected:
         if (value < min()) {
             ostringstream oss;
             oss << "Value " << value << " is not above " << min() << ".";
-            LogImpl::log()->entryNew(Log::error(), "valueIs", oss.str());
+            DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
             throw framework::RangeException(oss.str());
         }
         this->value_ = value;
@@ -167,7 +173,7 @@ protected:
         if (value > max()) {
             ostringstream oss;
             oss << "Value " << value << " is not below " << max() << ".";
-            LogImpl::log()->entryNew(Log::error(), "valueIs", oss.str());
+            DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
             throw framework::RangeException(oss.str());
         }
         this->value_ = value;
@@ -175,9 +181,11 @@ protected:
     
 };
 
+} // end namespace
+
 class Time { };
 
-class Duration : public LeftBounded<Time, double, 0, 0> { 
+class Duration : public framework::LeftBounded<Time, double, 0, 0> { 
 public:
 
     const Duration& operator=( const Duration& v) {
@@ -288,6 +296,6 @@ public:
 
 class Rate { };
 
-typedef LeftBounded<Rate, float, 0, 0> HoursPerSecond;
+typedef framework::LeftBounded<Rate, float, 0, 0> HoursPerSecond;
 
 #endif

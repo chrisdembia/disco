@@ -9,16 +9,16 @@ namespace framework {
 template <class T>
 class PtrInterface {
 public:
-    PtrInterface() : ref_(0) {}
-    unsigned long references() const { return ref_; }
+    PtrInterface() : _ref(0) {}
+    unsigned long references() const { return _ref; }
     // DRC - support for templates
-    inline const PtrInterface * newRef() const { ++ref_; return this; }
-    inline void deleteRef() const { if( --ref_ == 0 ) onZeroReferences(); }
+    inline const PtrInterface * newRef() const { ++_ref; return this; }
+    inline void deleteRef() const { if( --_ref == 0 ) onZeroReferences(); }
 protected:
     virtual ~PtrInterface() {}
     virtual void onZeroReferences() const { delete this; }
 private:
-    mutable long unsigned ref_;
+    mutable long unsigned _ref;
 };
 
 } // namespace framework

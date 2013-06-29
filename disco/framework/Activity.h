@@ -1,3 +1,4 @@
+// Copyright (c) 2005-2006_2007 David R. Cheriton.  All rights reserved.
 // Modified by Chris Dembia (2013).
 
 #ifndef FRAMEWORK_ACTIVITY_H
@@ -5,32 +6,36 @@
 
 #include <string>
 
-#include "framework/PtrInterface.h"
-#include "framework/Nominal.h"
-#include "framework/BaseNotifiee.h"
+#include "Ptr.h"
+#include "PtrInterface.h"
 
 using std::string;
 
 namespace framework
 {
 
-class Activity : public PtrInterface<Activity> {
+class Duration;
+
+class Activity : public framework::PtrInterface<Activity>
+{
 public:
 
-    typedef Ptr<Activity> Ptr;
+    typedef framework::Ptr<Activity> Ptr;
 
     /* Notifiee class for Activities */
-    class Notifiee : public BaseNotifiee<Activity> {
+    class Notifiee : public BaseNotifiee<Activity>
+    {
     public:
-        typedef Ptr<Notifiee> Ptr;
-        Notifiee(Activity * act) : BaseNotifiee<Activity>(act) { }
+        typedef framework::Ptr<Notifiee> Ptr;
+        Notifiee(Activity * act) : framework::BaseNotifiee<Activity>(act) { }
         virtual void onNextExecutionTimeIs() { }
         virtual void onStatusIs() { } 
     };
 
     class Manager;
 
-    enum Status {
+    enum Status
+    {
         _free,
         _waiting,
         _ready,
@@ -52,7 +57,7 @@ public:
     virtual void nextExecutionTimeIs(Duration time) = 0;
     virtual void nextExecutionTimeInc(Duration time) = 0;
 
-    virtual Ptr<Notifiee> notifiee() const = 0;
+    virtual framework::Ptr<Notifiee> notifiee() const = 0;
 
     virtual void notifieeIs(Notifiee* n) = 0;
 
@@ -68,13 +73,14 @@ private:
 
 };
 
-class Activity::Manager : public PtrInterface<Activity::Manager> {
+class Activity::Manager : public PtrInterface<Activity::Manager>
+{
 public:
 
-    typedef Ptr<Activity::Manager> Ptr;
+    typedef framework::Ptr<Activity::Manager> Ptr;
 
-    virtual Ptr<Activity> activityNew(const string &name) = 0;
-    virtual Ptr<Activity> activity(const string &name) const = 0;
+    virtual framework::Ptr<Activity> activityNew(const string &name) = 0;
+    virtual framework::Ptr<Activity> activity(const string &name) const = 0;
     virtual Activity::Ptr activityDel(const string &name) = 0;
 
     virtual Duration timePassed() const = 0;

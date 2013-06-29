@@ -4,12 +4,15 @@
 #ifndef FRAMEWORK_EXCEPTION_H
 #define FRAMEWORK_EXCEPTION_H
 
+#include <cstring>
 #include <iostream>
+#include <stdint.h>
 
-#include "framework/Ptr.h"
-#include "framework/PtrInterface.h"
+#include "Ptr.h"
+#include "PtrInterface.h"
 
-#ifdef _MSC_VER // Don't want to see strerror warnings, assume we won't get buffer overflowed
+// Don't want to see strerror warnings; assume we won't get buffer overflowed.
+#ifdef _MSC_VER
   #pragma warning(disable: 4996)
 #endif
 
@@ -52,7 +55,7 @@ public:
       _noParentException = 27,
    };
 
-   static Id IdInstance( U32 v );
+   static Id IdInstance( uint32_t v );
 
    string what() const { return _what; }
    virtual ~Exception();

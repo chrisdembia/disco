@@ -1,7 +1,7 @@
 // Copyright (c) 2005-2006_2007 David R. Cheriton.  All rights reserved.
 // Modified by Chris Dembia (2013).
 
-#include "framework/Exception.h"
+#include "Exception.h"
 
 #include <assert.h>
 #include <iostream>
@@ -10,7 +10,7 @@
 namespace framework
 {
 
-Exception::Id Exception::IdInstance( U32 v ) {
+Exception::Id Exception::IdInstance( uint32_t v ) {
    switch( v ) {
     case _noException : return _noException;
     case _unknownException : return _unknownException;

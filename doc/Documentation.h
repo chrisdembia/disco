@@ -8,18 +8,17 @@
  * The disco physics engine attempts to be general, and thus suits a number of
  * use cases:
  *
- * -simulation
- * -control testbed
- *      pendulum on a cart
- * -visualization
- * -video game physics engine
+ *  - simulation
+ *  - control testbed
+ *  - visualization
+ *  - video game physics engine
  *
  * */
 
 /**
- * @brief Framework classes for smart pointers, etc.
+ * @brief Base classes, callback (notifier) system, smart pointers, etc.
  * */
-namespace fwk { }
+namespace framework { }
 
 /**
  * @brief The interface classes for the physics engine.

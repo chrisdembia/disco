@@ -3,7 +3,8 @@
 #ifndef FRAMEWORK_LOGIMPL_H
 #define FRAMEWORK_LOGIMPL_H
 
-#include "framework/Log.h"
+#include "Log.h"
+#include "Ptr.h"
 
 #include <string>
 
@@ -17,7 +18,7 @@ namespace framework {
  * Implementation of framework::Log for logging errors, etc.
  *
  * */
-class LogImpl : public framework::Log {
+class DiscoLog : public framework::Log {
 public:
 
     void entryNew(Priority priority,
@@ -37,7 +38,7 @@ public:
 protected:
 
     // TODO
-    LogImpl() : framework::Log("DiscoLog") { }
+    DiscoLog() : framework::Log("DiscoLog") { }
 
     static framework::Ptr<framework::Log> _log;
 

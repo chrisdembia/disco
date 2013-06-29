@@ -1,7 +1,5 @@
-project(DISCO CXX)
+project(disco CXX)
 cmake_minimum_required(VERSION 2.6)
-
-set(LIBRARY_NAME "disco")
 
 # User options
 # -----------------------------------------------------------------------------
@@ -40,7 +38,7 @@ endif(DISCO_BUILD_DOC)
 
 # Include headers.
 # -----------------------------------------------------------------------------
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/disco)
 
 # The libraries.
 # -----------------------------------------------------------------------------

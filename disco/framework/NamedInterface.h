@@ -4,35 +4,39 @@
 #ifndef FRAMEWORK_NAMEDINTERFACE_H
 #define FRAMEWORK_NAMEDINTERFACE_H
 
-#include "framework/PtrInterface.h"
-#include "framework/BaseNotifiee.h"
+#include "Ptr.h"
+#include "PtrInterface.h"
+#include "BaseNotifiee.h"
 
 using std::string;
 
-namespace framework {
+namespace framework
+{
 
 class NamedInterface : public PtrInterface<NamedInterface>
 {
 public:
-	string name() const { return name_; }
+	string name() const { return _name; }
 
-	class NotifieeConst : virtual public RootNotifiee {
+	class NotifieeConst : virtual public framework::RootNotifiee
+    {
 	public:
 		typedef framework::Ptr<NotifieeConst const> PtrConst;
 		typedef framework::Ptr<NotifieeConst> Ptr;
 	};
 
-	class Notifiee : virtual public NotifieeConst {
+	class Notifiee : virtual public NotifieeConst
+    {
 	public:
 		typedef framework::Ptr<Notifiee const> PtrConst;
 		typedef framework::Ptr<Notifiee> Ptr;
 	};
 
 protected:
-	NamedInterface(const string& name) : name_(name) { }
+	NamedInterface(const string& name) : _name(name) { }
 
 private:
-	string name_;
+	string _name;
 };
 
 } // namespace framework
