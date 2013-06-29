@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 2.6)
 
 set(LIBRARY_NAME "disco")
 
-# --- User options
+# User options
+# -----------------------------------------------------------------------------
 set(DISCO_BUILD_TESTS FALSE CACHE BOOL
     "Build google-test tests.")
 set(DISCO_BUILD_EXAMPLES FALSE CACHE BOOL
@@ -12,6 +13,7 @@ set(DISCO_BUILD_DOC FALSE CACHE BOOL
     "Create API documentation (requires Doxygen).")
 
 # Build googletest.
+# -----------------------------------------------------------------------------
 if(DISCO_BUILD_TESTS)
     # To use CTest.
     enable_testing()
@@ -22,6 +24,7 @@ if(DISCO_BUILD_TESTS)
 endif()
 
 # Doxygen API documentation.
+# -----------------------------------------------------------------------------
 if(DISCO_BUILD_DOC)
     find_package(Doxygen REQUIRED)
     if(DOXYGEN_FOUND)
@@ -31,16 +34,14 @@ if(DISCO_BUILD_DOC)
             ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
             COMMENT "Generating API documentation with Doxygen" VERBATIM)
+        install(DIRECTORY doc DESTINATION doc)
     endif(DOXYGEN_FOUND)
 endif(DISCO_BUILD_DOC)
 
-# ---
-
 # Include headers.
+# -----------------------------------------------------------------------------
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-# The library.
-file(GLOB DISCO_SOURCES src/*/*.cpp)
-file(GLOB DISCO_HEADERS include/*/*/*)
-
-add_library(${LIBRARY_NAME} ${DISCO_SOURCES} ${DISCO_HEADERS})
+# The libraries.
+# -----------------------------------------------------------------------------
+add_subdirectory(disco)
