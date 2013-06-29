@@ -10,6 +10,10 @@ set(DISCO_BUILD_EXAMPLES FALSE CACHE BOOL
 set(DISCO_BUILD_DOC FALSE CACHE BOOL
     "Create API documentation (requires Doxygen).")
 
+# Include headers.
+# -----------------------------------------------------------------------------
+include_directories(${CMAKE_SOURCE_DIR}/disco)
+
 # Build googletest.
 # -----------------------------------------------------------------------------
 if(DISCO_BUILD_TESTS)
@@ -35,10 +39,6 @@ if(DISCO_BUILD_DOC)
         install(DIRECTORY doc DESTINATION doc)
     endif(DOXYGEN_FOUND)
 endif(DISCO_BUILD_DOC)
-
-# Include headers.
-# -----------------------------------------------------------------------------
-include_directories(${CMAKE_SOURCE_DIR}/disco)
 
 # The libraries.
 # -----------------------------------------------------------------------------

@@ -11,11 +11,12 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
+using std::ostringstream;
 using framework::DiscoLog;
 using framework::Log;
 
-namespace framework {
+namespace framework
+{
 
 template<class UnitType, class RepType>
     class Nominal
@@ -36,7 +37,8 @@ public:
 	RepType value() const
 	{ return value_; }
 
-    string str() const {
+    std::string string() const
+    {
         ostringstream oss;
         oss << value();
         return oss.str();
@@ -86,29 +88,34 @@ public:
 };
 
 template<class UnitType, class RepType, int Default, int Min>
-class LeftBounded : public Ordinal<UnitType, RepType> {
+class LeftBounded : public Ordinal<UnitType, RepType>
+{
 public:
 
     RepType min() const { return (RepType)Min; }
 
     const LeftBounded<UnitType, RepType, Default, Min>& operator=(
-            const LeftBounded<UnitType, RepType, Default, Min>& v) {
+            const LeftBounded<UnitType, RepType, Default, Min>& v)
+    {
         valueIs(v.value());
         return *this;
     }
 
     LeftBounded<UnitType, RepType, Default, Min> operator+(
-            const LeftBounded<UnitType, RepType, Default, Min>& other) {
+            const LeftBounded<UnitType, RepType, Default, Min>& other)
+    {
         return (this->value() + other.value_);
     }
 
     LeftBounded<UnitType, RepType, Default, Min> operator-(
-            const LeftBounded<UnitType, RepType, Default, Min>& other) {
+            const LeftBounded<UnitType, RepType, Default, Min>& other)
+    {
         return (this->value() - other.value_);
     }
 
     LeftBounded<UnitType, RepType, Default, Min> operator/(
-            const LeftBounded<UnitType, RepType, Default, Min>& other) {
+            const LeftBounded<UnitType, RepType, Default, Min>& other)
+    {
         return (Ordinal<UnitType, RepType>::value_ / other.value_);
     }
 
@@ -132,34 +139,40 @@ protected:
 };
 
 template<class UnitType, class RepType, int Default, int Min, int Max>
-class DoubleBounded : public LeftBounded<UnitType, RepType, Default, Min> {
+class DoubleBounded : public LeftBounded<UnitType, RepType, Default, Min>
+{
 public:
 
     RepType max() const { return (RepType)Max; }
 
     const DoubleBounded<UnitType, RepType, Default, Min, Max>& operator=(
-            const DoubleBounded<UnitType, RepType, Default, Min, Max>& v) {
+            const DoubleBounded<UnitType, RepType, Default, Min, Max>& v)
+    {
         valueIs(v.value());
         return *this;
     }
 
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator+(
-            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other) {
+            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
+    {
         return (this->value() + other.value_);
     }
 
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator-(
-            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other) {
+            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
+    {
         return (this->value() - other.value_);
     }
 
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator/(
-            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other) {
+            const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
+    {
         return (Ordinal<UnitType, RepType>::value_ / other.value_);
     }
 
     DoubleBounded(RepType value=(RepType)Default) : 
-            LeftBounded<UnitType, RepType, Default, Min>(value) {
+            LeftBounded<UnitType, RepType, Default, Min>(value)
+    {
         valueIs((RepType)value);
     }
 
@@ -178,124 +191,9 @@ protected:
         }
         this->value_ = value;
     }
-    
+
 };
 
 } // end namespace
-
-class Time { };
-
-class Duration : public framework::LeftBounded<Time, double, 0, 0> { 
-public:
-
-    const Duration& operator=( const Duration& v) {
-        valueIs(v.value());
-        return *this;
-    }
-
-    Duration operator+( const Duration& other) {
-        return (this->value() + other.value_);
-    }
-
-    Duration operator-( const Duration& other) {
-        return (this->value() - other.value_);
-    }
-
-    Duration operator/( const Duration& other) {
-        return (value() / other.value());
-    }
-
-    Duration(double value=0) : LeftBounded<Time, double, 0, 0>(value) { }
-
-//    operator Hours() { }
-
-};
-
-class Microseconds : public Duration {
-public:
-
-    const Microseconds& operator=( const Microseconds& v) {
-        valueIs(v.value());
-        return *this;
-    }
-
-    Microseconds operator+( const Microseconds& other) {
-        return (this->value() + other.value_);
-    }
-
-    Microseconds operator-( const Microseconds& other) {
-        return (this->value() - other.value_);
-    }
-
-    Microseconds operator/( const Microseconds& other) {
-        return (value() / other.value());
-    }
-
-    Microseconds(double value=0.0) : Duration(value) { }
-
-};
-
-class Seconds : public Duration {
-public:
-
-    const Seconds& operator=( const Seconds& v) {
-        valueIs(v.value());
-        return *this;
-    }
-
-    Seconds operator+( const Seconds& other) {
-        return (this->value() + other.value_);
-    }
-
-    Seconds operator-( const Seconds& other) {
-        return (this->value() - other.value_);
-    }
-
-    Seconds operator/( const Seconds& other) {
-        return (value() / other.value());
-    }
-
-    Seconds(double value=0.0) : Duration(value) { }
-
-    operator Microseconds() { return Microseconds(this->value() * 1000000.0); }
-
-};
-
-class Hours : public Duration { 
-public:
-
-    const Hours& operator=( const Hours& v) {
-        valueIs(v.value());
-        return *this;
-    }
-
-    Hours operator+( const Hours& other) {
-        return (this->value() + other.value_);
-    }
-
-    Hours operator-( const Hours& other) {
-        return (this->value() - other.value_);
-    }
-
-    Hours operator/( const Hours& other) {
-        return (value() / other.value());
-    }
-
-    Hours(double value=0.0) : Duration(value) { }
-
-};
-
-class Days : public Duration {
-public:
-
-    Days(double value=0.0) : Duration(value) { }
-
-    operator Hours() { return Hours(this->value() * 24.0); }
-
-};
-
-class Rate { };
-
-typedef framework::LeftBounded<Rate, float, 0, 0> HoursPerSecond;
 
 #endif
