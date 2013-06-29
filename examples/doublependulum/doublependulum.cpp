@@ -65,4 +65,22 @@ int main()
 
 
 
-}
+
+
+
+
+    sys = System("double pendulum");
+    N = sys.newtonianFrame();
+    RigidBody::Ptr link1 = sys.bodyNew("link1");
+    link1.jointIs(new RevoluteJoint());
+
+    RigidBody::Ptr link2 = link1.bodyNew("link2");
+    link2.jointIs(new RevoluteJoint());
+
+    Meters diameter(1.0);
+    Meters length(1.0);
+    CylinderBody::Ptr link1 = CylinderBody("link1", Kilograms(1.0), diameter,
+            length);
+    CylinderBody::Ptr link2 = CylinderBody("link2", Kilograms(1.0), diameter,
+            length);
+
