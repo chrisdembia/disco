@@ -13,6 +13,8 @@ class Force : public NamedInterface
 {
 public:
 
+    typedef framework::Ptr<Force> Ptr;
+
     /**
      * @brief Hello.
      * */
