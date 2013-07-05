@@ -1,4 +1,5 @@
 include_directories(
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/googletest
     ${CMAKE_SOURCE_DIR}/googletest/include
     )

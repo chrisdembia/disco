@@ -1,11 +1,12 @@
 #include "gtest/gtest.h"
 
-#include <framework/Time.h>
-#include <framework/Seconds.h>
-#include <framework/Minutes.h>
+#include <disco/framework/Time.h>
+#include <disco/framework/Seconds.h>
+#include <disco/framework/Minutes.h>
 
 using namespace framework;
 
+/*
 TEST(TestDuration, Construction)
 {
     // Default argument.
@@ -20,7 +21,9 @@ TEST(TestDuration, Construction)
     Seconds durationD = durationB;
     ASSERT_EQ(3.5, durationD.value());
 }
+*/
 
+// TODO write to string / output stream.
 /*
 TEST(TestDuration, Operations)
 {

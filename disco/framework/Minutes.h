@@ -5,6 +5,7 @@
 
 #include "Time.h"
 
+/*
 namespace framework
 {
 
@@ -43,7 +44,6 @@ public:
 
 };
 
-/*
 class Hours : public Duration
 {
 public:
@@ -82,9 +82,10 @@ public:
     operator Hours() { return Hours(this->value() * 24.0); }
 
 };
-*/
+
 
 } // namespace framework
+*/
 
 #endif
 

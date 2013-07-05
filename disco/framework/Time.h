@@ -14,11 +14,47 @@ class Time {};
 
 //class Microseconds;
 //class Milliseconds;
-class Seconds;
-class Minutes;
+//class Seconds;
+//class Minutes;
 //class Hours;
 //class Days;
 
+/*
+typedef framework::LeftBounded<Time, double, 0, 0> Hours;
+
+template<class ConversionFactors>
+    class Duration : public Real<Time, double>
+{
+    Duration<SecondsConversionFactors> seconds()
+    { value() * ConversionFactors.toSeconds() }
+
+    Duration<MinutesConversionFactors> minutes()
+    { value() * ConversionFactors.toMinutes() }
+
+}
+
+class SecondsConversionFactors
+{
+public:
+    static const double toSeconds = 1.0;
+    static const double toMinutes = 0.01666666666666666666666666666666666666667;
+private:
+    SecondsConversionFactors() {}
+};
+
+class MinutesConversionFactors
+{
+public:
+    static const double toSeconds = 60.0;
+    static const double toMinutes = 1.0;
+private:
+    MinutesConversionFactors() {}
+}
+
+typedef Duration<SecondsConversionFactors> Seconds;
+typedef Duration<MinutesConversionFactors> Minutes;
+
+*/
 class Duration : public framework::LeftBounded<Time, double, 0, 0> {
 public:
 
@@ -30,12 +66,12 @@ public:
 
     Duration operator+( const Duration& other)
     {
-        return (this->value() + other.value_);
+        return (this->value() + other.value());
     }
 
     Duration operator-( const Duration& other)
     {
-        return (this->value() - other.value_);
+        return (this->value() - other.value());
     }
 
     Duration operator/( const Duration& other)
@@ -46,8 +82,8 @@ public:
 
     Duration(double value=0) : LeftBounded<Time, double, 0, 0>(value) { }
 
-    virtual operator Seconds();
-    virtual operator Minutes();
+    //virtual operator Seconds() = 0;
+    //virtual operator Minutes() = 0;
     //virtual operator Microseconds() = 0;
     //virtual operator Milliseconds() = 0;
     //virtual operator Hours() = 0;

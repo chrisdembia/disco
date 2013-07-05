@@ -5,6 +5,7 @@
 
 #include "Time.h"
 
+/*
 namespace framework
 {
 
@@ -45,5 +46,6 @@ public:
 };
 
 } // namespace framework
+*/
 
 #endif

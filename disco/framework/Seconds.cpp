@@ -6,6 +6,6 @@
 namespace framework
 {
 
-Seconds::operator Minutes() { return Minutes(this->value() / 60.0); }
+// TODO Seconds::operator Minutes() { return Minutes(this->value() / 60.0); }
 
 } // namespace framework

@@ -22,20 +22,20 @@ template<class UnitType, class RepType>
     class Nominal
 {
 public:
-    Nominal(RepType v) : value_(v) {}
+    Nominal(RepType v) : _value(v) {}
 	
 	bool operator==(const Nominal<UnitType, RepType>& v) const
-	{ return value_ == v.value_; }
+	{ return _value == v._value; }
 	
 	bool operator!=(const Nominal<UnitType, RepType>& v) const
-	{ return value_ != v.value_; }
+	{ return _value != v._value; }
 	
 	const Nominal<UnitType, RepType>& operator=(const Nominal<UnitType,
 						    RepType>& v)
-	{ value_ = v.value_; return *this; }
+	{ _value = v._value; return *this; }
 	
 	RepType value() const
-	{ return value_; }
+	{ return _value; }
 
     std::string string() const
     {
@@ -44,12 +44,13 @@ public:
         return oss.str();
     }
 
-    //ostream& operator<<(ostream& os, const Nominal<UnitType, RepType>& n);
+    // TODO ostream& operator<<(ostream& os, const Nominal<UnitType, RepType>& n);
 	
 protected:
-	RepType value_;
+	RepType _value;
 };
 
+// TODO
 //ostream& 
 //Nominal<class UnitType, class RepType>::operator<<(ostream& os, const Nominal<class UnitType, class RepType>& n) {
 //    os << n.value();
@@ -63,27 +64,27 @@ public:
     Ordinal(RepType v) : Nominal<UnitType, RepType>(v) {}
 	
 	bool operator<(const Ordinal<UnitType, RepType>& v) const
-	{ return Nominal<UnitType, RepType>::value_ < v.value_; }
+	{ return Nominal<UnitType, RepType>::_value < v._value; }
 	
 	bool operator<=(const Ordinal<UnitType, RepType>& v) const
-	{ return Nominal<UnitType, RepType>::value_ <= v.value_; }
+	{ return Nominal<UnitType, RepType>::_value <= v._value; }
 	
 	bool operator>(const Ordinal<UnitType, RepType>& v) const
-	{ return Nominal<UnitType, RepType>::value_ > v.value_; }
+	{ return Nominal<UnitType, RepType>::_value > v._value; }
 
 	bool operator>=(const Ordinal<UnitType, RepType>& v) const
-	{ return Nominal<UnitType, RepType>::value_ >= v.value_; }
+	{ return Nominal<UnitType, RepType>::_value >= v._value; }
 	
 	Ordinal<UnitType, RepType> operator+(const Ordinal<UnitType,
 					     RepType>& other)
-	{ return (Nominal<UnitType, RepType>::value_ + other.value_); }
+	{ return (Nominal<UnitType, RepType>::_value + other._value); }
 	
 	Ordinal<UnitType, RepType> operator/(const Ordinal<UnitType,
 					     RepType>& other)
-	{ return (Nominal<UnitType, RepType>::value_ / other.value_); }
+	{ return (Nominal<UnitType, RepType>::_value / other._value); }
 	
 	const Ordinal<UnitType, RepType>& operator++()
-	{ ++Nominal<UnitType, RepType>::value_; return *this; }
+	{ ++Nominal<UnitType, RepType>::_value; return *this; }
 
 };
 
@@ -104,19 +105,19 @@ public:
     LeftBounded<UnitType, RepType, Default, Min> operator+(
             const LeftBounded<UnitType, RepType, Default, Min>& other)
     {
-        return (this->value() + other.value_);
+        return (this->value() + other._value);
     }
 
     LeftBounded<UnitType, RepType, Default, Min> operator-(
             const LeftBounded<UnitType, RepType, Default, Min>& other)
     {
-        return (this->value() - other.value_);
+        return (this->value() - other._value);
     }
 
     LeftBounded<UnitType, RepType, Default, Min> operator/(
             const LeftBounded<UnitType, RepType, Default, Min>& other)
     {
-        return (Ordinal<UnitType, RepType>::value_ / other.value_);
+        return (Ordinal<UnitType, RepType>::_value / other._value);
     }
 
     LeftBounded(RepType value=(RepType)Default) :
@@ -133,7 +134,7 @@ protected:
             DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
             throw framework::RangeException(oss.str());
         }
-        this->value_ = value;
+        this->_value = value;
     }
     
 };
@@ -155,19 +156,19 @@ public:
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator+(
             const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
     {
-        return (this->value() + other.value_);
+        return (this->value() + other._value);
     }
 
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator-(
             const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
     {
-        return (this->value() - other.value_);
+        return (this->value() - other._value);
     }
 
     DoubleBounded<UnitType, RepType, Default, Min, Max> operator/(
             const DoubleBounded<UnitType, RepType, Default, Min, Max>& other)
     {
-        return (Ordinal<UnitType, RepType>::value_ / other.value_);
+        return (Ordinal<UnitType, RepType>::_value / other._value);
     }
 
     DoubleBounded(RepType value=(RepType)Default) : 
@@ -189,7 +190,7 @@ protected:
             DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
             throw framework::RangeException(oss.str());
         }
-        this->value_ = value;
+        this->_value = value;
     }
 
 };

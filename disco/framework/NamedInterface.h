@@ -13,9 +13,10 @@ using std::string;
 namespace framework
 {
 
-class NamedInterface : public PtrInterface<NamedInterface>
+class NamedInterface : public PtrInterface
 {
 public:
+
 	string name() const { return _name; }
 
 	class NotifieeConst : virtual public framework::RootNotifiee
