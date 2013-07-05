@@ -9,3 +9,5 @@ install(
     TARGETS ${CMAKE_PROJECT_NAME}framework
     DESTINATION ${DISCO_SHARED_LIBRARY_DESTINATION}
     )
+
+# TODO place the above within a CMake macro.
