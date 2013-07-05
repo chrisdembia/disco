@@ -13,7 +13,7 @@ using std::string;
 namespace framework
 {
 
-class Log : public NamedInterface<Log>
+class Log : public NamedInterface
 {
 public:
 

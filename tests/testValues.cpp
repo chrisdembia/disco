@@ -1,8 +1,6 @@
 #include "gtest/gtest.h"
 
-#include <disco/framework/Time.h>
-#include <disco/framework/Seconds.h>
-#include <disco/framework/Minutes.h>
+#include <disco/framework/Nominal.h>
 
 using namespace framework;
 

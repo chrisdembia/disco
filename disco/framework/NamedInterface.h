@@ -13,7 +13,7 @@ using std::string;
 namespace framework
 {
 
-class NamedInterface : public PtrInterface
+class NamedInterface : public PtrInterface<NamedInterface>
 {
 public:
 
