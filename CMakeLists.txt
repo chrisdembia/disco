@@ -39,7 +39,7 @@ if(DISCO_BUILD_DOC)
             ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
             COMMENT "Generating API documentation with Doxygen" VERBATIM)
-        install(DIRECTORY doc DESTINATION doc)
+        install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html/ DESTINATION doc)
     endif(DOXYGEN_FOUND)
 endif(DISCO_BUILD_DOC)
 
