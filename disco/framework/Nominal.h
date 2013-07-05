@@ -130,14 +130,17 @@ public:
     }
 
     LeftBounded(RepType value=(RepType)Default) :
-            Ordinal<UnitType, RepType>(value) {
+            Ordinal<UnitType, RepType>(value)
+    {
         valueIs((RepType)value);
     }
 
 protected:
 
-    void valueIs(RepType value) {
-        if (value < min()) {
+    void valueIs(RepType value)
+    {
+        if (value < min())
+        {
             ostringstream oss;
             oss << "Value " << value << " is not above " << min() << ".";
             DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
@@ -188,12 +191,14 @@ public:
 
 protected:
 
-    void valueIs(RepType value) {
+    void valueIs(RepType value)
+    {
 
         // Check lower bound first.
         LeftBounded<UnitType, RepType, Default, Min>::valueIs(value);
 
-        if (value > max()) {
+        if (value > max())
+        {
             ostringstream oss;
             oss << "Value " << value << " is not below " << max() << ".";
             DiscoLog::log()->entryNew(Log::error(), "valueIs", oss.str());
