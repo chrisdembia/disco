@@ -18,6 +18,9 @@ using framework::Log;
 namespace framework
 {
 
+/**
+ * @brief Identifiers that do not have an order to them (e.g., serial numbers).
+ * */
 template<class UnitType, class RepType>
     class Nominal
 {
@@ -57,6 +60,12 @@ protected:
 //    return os;
 //}
 
+/**
+ * @brief Identifiers that have an order; e.g., a count of rigid bodies.
+ *
+ * A count of rigid bodies may be made using:
+ * typedef Ordinal<RigidBody, int> RigidBodyCount;
+ * */
 template<class UnitType, class RepType>
     class Ordinal : public Nominal<UnitType, RepType>
 {
