@@ -1,5 +1,5 @@
-#ifndef FRAMEWORK_H
-#define FRAMEWORK_H
+#ifndef DISCO_FRAMEWORK_H
+#define DISCO_FRAMEWORK_H
 
 #include "Activity.h"
 #include "BaseNotifiee.h"

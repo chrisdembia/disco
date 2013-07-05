@@ -62,4 +62,5 @@ endif(DISCO_BUILD_DOC)
 
 # The libraries.
 # -----------------------------------------------------------------------------
+include_directories(${PROJECT_SOURCE_DIR})
 add_subdirectory(disco)

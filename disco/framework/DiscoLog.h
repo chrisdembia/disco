@@ -1,7 +1,7 @@
 // Copyright (C) 2013 Chris Dembia.
 
-#ifndef FRAMEWORK_LOGIMPL_H
-#define FRAMEWORK_LOGIMPL_H
+#ifndef DISCO_FRAMEWORK_DICSOLOG_H
+#define DISCO_FRAMEWORK_DICSOLOG_H
 
 #include "Log.h"
 #include "Ptr.h"

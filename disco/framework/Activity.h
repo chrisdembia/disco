@@ -1,8 +1,8 @@
 // Copyright (c) 2005-2006_2007 David R. Cheriton.  All rights reserved.
 // Modified by Chris Dembia (2013).
 
-#ifndef FRAMEWORK_ACTIVITY_H
-#define FRAMEWORK_ACTIVITY_H
+#ifndef DISCO_FRAMEWORK_ACTIVITY_H
+#define DISCO_FRAMEWORK_ACTIVITY_H
 
 #include <string>
 

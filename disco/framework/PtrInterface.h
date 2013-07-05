@@ -1,8 +1,8 @@
 // Copyright (c) 1993-2007 David R. Cheriton, all rights reserved.
 // Modified by Chris Dembia (2013).
 
-#ifndef FRAMEWORK_PTRINTERFACE_H
-#define FRAMEWORK_PTRINTERFACE_H
+#ifndef DISCO_FRAMEWORK_PTRINTERFACE_H
+#define DISCO_FRAMEWORK_PTRINTERFACE_H
 
 namespace framework {
 

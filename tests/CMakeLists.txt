@@ -19,3 +19,4 @@ endmacro()
 
 disco_test(Values)
 disco_test(Interface)
+disco_test(Modeling)

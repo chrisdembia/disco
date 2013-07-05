@@ -1,8 +1,52 @@
 #include "gtest/gtest.h"
 
-#include <disco/framework/Nominal.h>
+#include <disco/value/value.h>
 
-using namespace framework;
+using namespace disco;
+
+TEST(TestTime, Construction)
+{
+    Time myFirstTime = 1.5 * second;
+    Time mySecondTime = 2.5 * seconds;
+}
+
+TEST(TestTime, Addition)
+{
+    Time myFirstTime = 1.5 * second;
+    Time mySecondTime = 2.5 * seconds;
+    Time myThirdTime = myFirstTime + mySecondTime;
+
+    ASSERT_EQ(4.0 * seconds, myThirdTime);
+}
+
+TEST(TestInertia, Construction)
+{
+    MomentOfInertia Ixx = 1.2 * kilograms * meters * meters;
+    /*
+    MomentOfInertia Iyy = 10.3 * kilograms * meters^2;
+    MomentOfInertia = 11.5 * kilograms * meters^2;
+    Inertia I(Ixx, Iyy, Izz);
+
+    ASSERT_EQ(I.Ixx(), Ixx);
+    ASSERT_EQ(I.Iyy(), Iyy);
+    ASSERT_EQ(I.Izz(), Izz);
+    ASSERT_EQ(I.Ixy(), 0.0 kilograms * meters^2);
+    ASSERT_EQ(I.Ixz(), 0.0 kilograms * meters^2);
+    ASSERT_EQ(I.Iyz(), 0.0 kilograms * meters^2);
+    */
+
+    // TODO other constructors.
+
+}
+
+/*
+TEST(TestTime, UnitConversion)
+{
+    // TODO
+}
+*/
+
+// TODO dimensionless.
 
 /*
 TEST(TestDuration, Construction)

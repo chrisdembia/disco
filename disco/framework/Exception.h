@@ -1,8 +1,8 @@
 // Copyright(c) 1993-2006_2007, David R. Cheriton, all rights reserved.
 // Modified by Chris Dembia (2013).
 
-#ifndef FRAMEWORK_EXCEPTION_H
-#define FRAMEWORK_EXCEPTION_H
+#ifndef DISCO_FRAMEWORK_EXCEPTION_H
+#define DISCO_FRAMEWORK_EXCEPTION_H
 
 #include <cstring>
 #include <iostream>
