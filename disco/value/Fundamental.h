@@ -1,6 +1,7 @@
 #ifndef DISCO_VALUE_FUNDAMENTAL_H
 #define DISCO_VALUE_FUNDAMENTAL_H
 
+#include <boost/units/cmath.hpp>
 #include <boost/units/systems/si.hpp>
 
 using namespace boost::units;
