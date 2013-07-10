@@ -2,7 +2,24 @@
 
 int main()
 {
-    sys = System("double pendulum");
+    System::Ptr sys = System("double pendulum");
+
+    RigidBody::Ptr link1 = sys.rigid_body_new("link1");
+    RigidBody::Ptr link2 = sys.rigid_body_new("link2");
+
+    Length L = 1 * meter;
+    link1.joint_is(new RevoluteJoint("theta1",
+                Transform(),
+                Transform()));
+    link2.joint_is(new RevoluteJoint("theta2",
+                Transform::translationZ(L1),
+                Transform()));
+
+    link1.mass_is(1 * kilogram);
+    link2.mass_is(1 * kilogram);
+
+    link1.center_of_mass_from(Position(0.5 * L, 0, 0));
+
     N = sys.newtonianFrame();
     RigidBody::Ptr link1 = sys.bodyNew("link1");
 
