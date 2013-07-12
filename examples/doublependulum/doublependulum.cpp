@@ -18,7 +18,14 @@ int main()
     link1.mass_is(1 * kilogram);
     link2.mass_is(1 * kilogram);
 
-    link1.center_of_mass_from(Position(0.5 * L, 0, 0));
+    link1.center_of_mass_is(Position<link1>(0.5 * L, 0, 0));
+
+//    link1.center_of_mass_from_origin_is(Position
+
+
+    sys.state()["theta1"] = 1.57;
+
+
 
     N = sys.newtonianFrame();
     RigidBody::Ptr link1 = sys.bodyNew("link1");

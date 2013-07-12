@@ -1,9 +1,10 @@
 #ifndef DISCO_MODELING_RIGIDBODY_H
 #define DISCO_MODELING_RIGIDBODY_H
 
-#include <disco/framework/NamedInterface.h>
 #include <disco/value/Fundamental.h>
 #include <disco/value/Inertia.h>
+
+#include "Frame.h"
 
 namespace disco
 {
@@ -11,7 +12,7 @@ namespace disco
 /**
  * @brief A rigid body.
  * */
-class RigidBody : public framework::NamedInterface
+class RigidBody : public framework::Frame
 {
 public:
 
@@ -38,6 +39,11 @@ private:
 
     Mass _mass;
     Inertia _inertia;
+    /*
+    PositionFromBodyOriginExpressedInBodyFrameBasis _center_of_mass;
+    Position<
+    */
+    Point center_of_mass;
 
 };
 
